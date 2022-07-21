@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 폼</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="wrap">
+	<div class="title">회원가입</div>
+	<form action="adduser.do" method="get">
+		<ul>
+			<li><p>아이디</p><input type="text" name="userId"></li>
+			<li><p>비밀번호</p><input type="password" name="passwd"></li>
+			<li><p>이름</p><input type="text" name="name"></li>
+			<li><p>주민번호</p><input type="text" name="ssn" placeholder="앞자리 6자만 입력하세요."></li>
+			<li><p>이메일</p><input type="text" name="email1"><span>@</span>
+				<select name="email2">
+					<option value="naver.com">naver.com</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="daum.net">daum.net</option>
+				</select>
+			</li>
+			<li>
+				<p>관심분야</p>
+				<input type="checkbox" name="concerns" value="JAVA">JAVA 
+				<input type="checkbox" name="concerns" value="Servlet/JSP">Servlet/JSP
+				<input type="checkbox" name="concerns" value="EJB">EJB 
+				<input type="checkbox" name="concerns" value="Android">Android 
+				<input type="checkbox" name="concerns" value="Spring">Spring
+			</li>
+			<li><button type="submit">가입하기</button></li>
+		</ul>
+	</form>
+</div>
+</body>
+</html>
+
+<!-- 
+-회원 아이디 : userId
+-비밀번호 : passwd
+-이름 : name
+-주민번호 : ssn (앞의 6자리만)
+-이메일1 : email1 (아이디)
+-이메일2 : email2 (메일도메인 ex: naver.com, [gmail.com](http://gmail.com)  …)
+-관심분야 : concerns 
+(체크박스 : 다중 선택가능, ex: Java, Servlet/JSP, EJB, Andoriod, Spring…)
+-->

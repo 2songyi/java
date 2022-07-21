@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+ul, li { list-style: none; }
+
+#wrap {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+#wrap .title {
+	text-align: center;
+	font-size: 35px;
+}
+
+input {
+	border: 1px solid grey;
+	box-sizing: border-box;
+	padding: 10px 14px 10px 14px;
+}
+
+li span {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+li select {
+	padding: 10px 14px 10px 14px;
+	margin: 0;
+}
+
+li p {
+	font-weight: bold;
+}
+
+button {
+	background-color: lightgrey;
+	text-align: center;
+	border: 1px solid grey;
+	height: 45px;
+	width: 500px;
+	font-size: 15px;
+	margin-top: 30px;
+}
