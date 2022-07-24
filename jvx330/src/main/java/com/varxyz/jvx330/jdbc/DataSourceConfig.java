@@ -35,6 +35,10 @@ public class DataSourceConfig {
 	public AddCustomerDataSourceDao addCustomerDataSourceDao() {
 		return new AddCustomerDataSourceDao(dataSource());
 	}
+	// 의존관계가 필요할 때 bean으로 선언된 dataSource를 호출함으로써 의존성을 주입할 수 있다.
+	// component대신 bean을 사용하면 객체를 반환하는 메소드 작성한 후 bean어노테이션을 부여하면 된다.
+	// annotaion을 기반으로 bean을 등록하면 annotaionConfigApplicationContext객체 생성하고
+	// 매개변수로 configuration 어노테이션 부여한 클래스를 넘겨주고 getBean을 쓰면 된다.
 	
 	@Bean
 	public AddCustomerDao addCustomerDao() {
