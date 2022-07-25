@@ -22,7 +22,7 @@ public class AddCustomerDao {
 
 	// creator 사용하기
 	public void addCustomer(Customer customer) {
-		String sql = "INSERT INTO Customer2 (email, passwd, name, ssn, phone) " 
+		String sql = "INSERT INTO Customer (email, passwd, name, ssn, phone) " 
 					+ " VALUES (?, ?, ?, ?, ?)";
 
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -43,8 +43,9 @@ public class AddCustomerDao {
 		});
 	}
 	
+	// update
 	public void addCustomer2(Customer customer) {
-		String sql = "INSERT INTO Customer2 (email, passwd, name, ssn, phone) " 
+		String sql = "INSERT INTO Customer (email, passwd, name, ssn, phone) " 
 					+ " VALUES (?, ?, ?, ?, ?)";
 
 		jdbcTemplate.update(sql, customer.getEmail(), customer.getPasswd(), customer.getName(),
@@ -53,7 +54,7 @@ public class AddCustomerDao {
 
 	// keyHolder
 	public long addCustomer3(Customer customer) {
-		String sql = "INSERT INTO Customer2 (email, passwd, name, ssn, phone) " 
+		String sql = "INSERT INTO Customer (email, passwd, name, ssn, phone) " 
 				+ " VALUES (?, ?, ?, ?, ?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();

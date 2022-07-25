@@ -19,7 +19,7 @@ public class AddCustomerDataSourceDao {
 	}
 	
 	public void addCoustomer(Customer customer) {
-		String sql = "INSERT INTO Customer2 (email, passwd, name, ssn, phone) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Customer (email, passwd, name, ssn, phone) VALUES (?, ?, ?, ?, ?)";
 		
 		try (Connection con = dataSource.getConnection(); //스프링에서 제공되는거 사용
 			 PreparedStatement pstmt = con.prepareStatement(sql);){

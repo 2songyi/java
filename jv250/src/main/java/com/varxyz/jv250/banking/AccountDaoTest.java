@@ -24,7 +24,6 @@ public class AccountDaoTest {
 		sa.setAccountType('S');
 		dao.addAccount(sa);
 		
-		
 		for(Account account : dao.findAccountsBySsn("898989-1234567")) {
 			System.out.println(account.getCustomer());
 		}

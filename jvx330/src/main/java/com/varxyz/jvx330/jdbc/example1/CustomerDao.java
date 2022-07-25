@@ -19,7 +19,7 @@ public class CustomerDao {
 	}
 	
 	public List<Customer> findAllCustomers() {
-		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate FROM Customer2";
+		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate FROM Customer";
 		
 		return jdbcTemplate.query(sql, new RowMapper<Customer>() {//<>안에 매핑해야할거 넣음
 			/* 쿼리의 반환형은 데이터형만 가능하다
@@ -30,7 +30,6 @@ public class CustomerDao {
 			 * 이 안에 mapRow라는 메서드를 사용 ResultSet에 값을 담아서 rowNuM만큼 반복한다.(알아서함)
 			 * 
 			 * */
-			 */
 			
 			@Override
 			public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -47,7 +46,7 @@ public class CustomerDao {
 	// 가입날짜로 고객 찾기
 	public List<Customer> findCustomerByRegDate(Date regDate) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE DATE(regDate)=?"; // date함수쓰면 날짜만 남음
+				+ " FROM Customer WHERE DATE(regDate)=?"; // date함수쓰면 날짜만 남음
 		
 		return jdbcTemplate.query(sql, new RowMapper<Customer>() {
 			
@@ -68,7 +67,7 @@ public class CustomerDao {
 	// 이메일로 고객 찾기
 	public Customer findCustomerByEmail(String email) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE email=?";
+				+ " FROM Customer WHERE email=?";
 		
 		return jdbcTemplate.queryForObject(sql, new RowMapper<Customer>() {
 			// query는 list가 반환. quertForObject는 하나만 반환
@@ -88,7 +87,7 @@ public class CustomerDao {
 	
 	// 고객 카운트 (숫자는 기본적으로 long)
 	public long countCustomers() {
-		String sql = "SELECT count(*) FROM Customer2";
+		String sql = "SELECT count(*) FROM Customer";
 		
 		return jdbcTemplate.queryForObject(sql, Long.class);
 	
@@ -97,7 +96,7 @@ public class CustomerDao {
 	// 주민번호로 고객 찾기
 	public Customer findCustomerBySsn(String ssn) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE ssn=?";
+				+ " FROM Customer WHERE ssn=?";
 		
 		return jdbcTemplate.queryForObject(sql, new RowMapper<Customer>() {
 			

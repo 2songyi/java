@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString
 public class Customer {
 
-	
 	private long cid;
 	private String email;
 	private String passwd;
@@ -24,5 +23,9 @@ public class Customer {
 	
 	public Customer() {
 		
+	}
+	
+	public Customer(long cid) {
+		this.cid = cid;
 	}
 }

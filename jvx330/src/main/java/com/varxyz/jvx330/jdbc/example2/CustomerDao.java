@@ -22,7 +22,7 @@ public class CustomerDao {
 	// CustomerMapRow 클래스 하나 만들어서 어나니머스 
 	
 	public List<Customer> findAllCustomers() {
-		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate FROM Customer2";
+		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate FROM Customer";
 		
 		return jdbcTemplate.query(sql, new CustomerMapRow());
 	}
@@ -30,7 +30,7 @@ public class CustomerDao {
 	// 가입날짜로 고객 찾기
 	public List<Customer> findCustomerByRegDate(Date regDate) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE DATE(regDate)=?"; // date함수쓰면 날짜만 남음
+				+ " FROM Customer WHERE DATE(regDate)=?"; // date함수쓰면 날짜만 남음
 		
 		return jdbcTemplate.query(sql, new CustomerMapRow(), regDate); // 마지막에 조건 -> regDate
 		
@@ -39,14 +39,14 @@ public class CustomerDao {
 	// 이메일로 고객 찾기
 	public Customer findCustomerByEmail(String email) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE email=?";
+				+ " FROM Customer WHERE email=?";
 		
 		return jdbcTemplate.queryForObject(sql, new CustomerMapRow(), email);
 	}
 	
 	// 고객 카운트 (숫자는 기본적으로 long)
 	public long countCustomers() {
-		String sql = "SELECT count(*) FROM Customer2";
+		String sql = "SELECT count(*) FROM Customer";
 		
 		return jdbcTemplate.queryForObject(sql, Long.class);
 	
@@ -55,7 +55,7 @@ public class CustomerDao {
 	// 주민번호로 고객 찾기
 	public Customer findCustomerBySsn(String ssn) {
 		String sql = "SELECT cid, email, passwd, name, ssn, phone, regDate "
-				+ " FROM Customer2 WHERE ssn=?";
+				+ " FROM Customer WHERE ssn=?";
 		
 		return jdbcTemplate.queryForObject(sql, new CustomerMapRow(), ssn);
 	}
