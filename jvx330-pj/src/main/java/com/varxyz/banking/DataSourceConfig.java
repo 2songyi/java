@@ -1,18 +1,17 @@
-package com.varxyz.jvx330.jdbc;
+package com.varxyz.banking;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.varxyz.jvx330.jdbc.example1.AddCustomerDao;
-import com.varxyz.jvx330.jdbc.example1.AddCustomerDataSourceDao;
-import com.varxyz.jvx330.jdbc.example1.CustomerDao;
-import com.varxyz.jvx330.jdbc.example5.AccountDao;
+import com.varxyz.banking.dao.AccountDao;
+import com.varxyz.banking.dao.CustomerDao;
 
 @Configuration
+//@ComponentScan(basePackages="com.varxyz.banking")
 public class DataSourceConfig {
-	// 공통적인거는 이 config에 두고 개별적으로 필요한건 개별로 만들어서 사용
 	
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
@@ -32,18 +31,10 @@ public class DataSourceConfig {
 		return new JdbcTemplate(dataSource()); // 계속 호출해도 싱글톤이라 동일한 템플릿 사용하게됨
 	}
 	
-	@Bean
-	public AddCustomerDataSourceDao addCustomerDataSourceDao() {
-		return new AddCustomerDataSourceDao(dataSource());
-	}
-	// 의존관계가 필요할 때 bean으로 선언된 dataSource를 호출함으로써 의존성을 주입할 수 있다.
-	// component대신 bean을 사용하면 객체를 반환하는 메소드 작성한 후 bean어노테이션을 부여하면 된다.
-	// annotaion을 기반으로 bean을 등록하면 annotaionConfigApplicationContext객체 생성하고
-	// 매개변수로 configuration 어노테이션 부여한 클래스를 넘겨주고 getBean을 쓰면 된다.
 	
 	@Bean
-	public AddCustomerDao addCustomerDao() {
-		return new AddCustomerDao(dataSource());
+	public AccountDao accountDao() {
+		return new AccountDao(dataSource());
 	}
 	
 	@Bean
@@ -51,6 +42,5 @@ public class DataSourceConfig {
 		return new CustomerDao(dataSource());
 	}
 	
-
-
+	
 }

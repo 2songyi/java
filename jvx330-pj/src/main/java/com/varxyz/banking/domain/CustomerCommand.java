@@ -1,4 +1,5 @@
-package com.varxyz.jvx330pj.adduser;
+package com.varxyz.banking.domain;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,13 +8,16 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
-public class User {
+@ToString
+public class CustomerCommand {
+
+
 	private String userId;
 	private String passwd;
-	private String userName;
+	private String name;
 	private String ssn;
-	private String email;
-	private String addr;
+	private String phone;
+
+	
 }

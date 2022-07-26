@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>회원가입 되었습니다.</h3>
-아이디 : ${userId}<br>
-비밀번호 : ${passwd}<br>
-이름 : ${userName}<br>
-
+${userId}님 회원가입 되었습니다!
+<button><a href="login">로그인하기</a></button>
 </body>
 </html>
