@@ -27,3 +27,32 @@ DROP TABLE Account;
 
 SELECT * FROM Customer;
 DROP TABLE Customer;
+
+SELECT *
+FROM Account a INNER JOIN Customer c 
+ON a.customerId = c.cid WHERE a.customerId = 1001;
+
+SELECT a.aid, a.customerId, a.accountNum, a.balance, a.interestRATE, a.overAmount, a.accType, c.name, c.ssn, c.phone, a.regDate
+FROM Account a INNER JOIN Customer c 
+ON a.customerId = c.cid WHERE a.customerId = ?";
+
+SELECT balance FROM Account WHERE accountNum = '985-50-4801';
+
+SELECT * FROM Customer WHERE userId = 'wer' AND passwd = 'wer';
+
+DELETE FROM Customer WHERE cid=1002;
+
+-- 계좌이체 비밀번호 확인
+SELECT * FROM Account a INNER JOIN Customer c
+ON (a.customerId = c.cid) WHERE a.accountNum = '013-03-5922' AND c.passwd='sdf';
+
+
+SELECT * FROM Account a INNER JOIN Customer c
+ON (a.customerId = c.cid);
+
+SELECT * FROM Account a INNER JOIN Customer c
+ON a.customerId = c.cid WHERE c.userId = 'sdf';
+
+
+
+

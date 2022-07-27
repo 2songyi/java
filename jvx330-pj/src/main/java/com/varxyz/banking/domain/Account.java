@@ -10,7 +10,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 public class Account {
 	private int aid;
 	private Customer customer;
@@ -22,7 +21,6 @@ public class Account {
 	public Account() {
 		
 	}
-
 
 
 }

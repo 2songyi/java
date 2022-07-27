@@ -2,10 +2,11 @@ package com.varxyz.banking;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.banking.Service.AccountService;
+import com.varxyz.banking.Service.CustomerService;
 import com.varxyz.banking.dao.AccountDao;
 import com.varxyz.banking.dao.CustomerDao;
 
@@ -40,6 +41,16 @@ public class DataSourceConfig {
 	@Bean
 	public CustomerDao customerDao() {
 		return new CustomerDao(dataSource());
+	}
+	
+	@Bean
+	public AccountService accountService() {
+		return new AccountService(dataSource());
+	}
+	
+	@Bean
+	public CustomerService customerService() {
+		return new CustomerService(dataSource());
 	}
 	
 	
