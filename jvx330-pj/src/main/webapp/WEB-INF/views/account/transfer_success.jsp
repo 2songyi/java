@@ -15,6 +15,15 @@
 
 현재 잔액 : ${balance}
 
+
 <button><a href="main">확인</a></button>
+
+<script type="text/javascript">
+	
+	alert("이체 완료되었습니다.
+			현재 잔액은 ${balance}원 입니다.");
+	document.location.href="main";
+
+</script>
 </body>
 </html>

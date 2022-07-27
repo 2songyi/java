@@ -2,6 +2,8 @@ package com.varxyz.banking.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class AccountController {
 
 	@GetMapping("banking/add_account")
 	public String addAccount() {
+		System.out.println("계좌 개설 페이지");
 		return "account/add_account";
 	}
 
@@ -122,13 +125,17 @@ public class AccountController {
 	
 //	 계좌이체
 	@GetMapping("banking/transfer")
-	public String transfer() {
+	public String transfer(HttpSession session, Model model) {
+		
+		String userId = (String) session.getAttribute("userId");
+		System.out.println(userId);
+		model.addAttribute("userId", userId);
 		return "account/transfer";
 	}
 	
 	@PostMapping("banking/transfer")
 	public String transferDo(@RequestParam String outAccountNum, @RequestParam String inAccountNum, 
-			@RequestParam double money, @RequestParam String passwd, Model model) {
+			@RequestParam double money, @RequestParam String passwd, Model model, HttpSession session) {
 		
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
 		AccountService service = context.getBean("accountService", AccountService.class);
@@ -148,6 +155,7 @@ public class AccountController {
 		model.addAttribute("inAccountNum", inAccountNum);
 		model.addAttribute("money", money);
 		model.addAttribute("balance", balance); // 이체 결과 잔액
+		model.addAttribute("userId", session.getAttribute("userId"));
 		return "account/transfer_success";
 	}
 
