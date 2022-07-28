@@ -1,5 +1,7 @@
 package com.varxyz.banking.dao;
 
+import java.util.List;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -17,6 +19,12 @@ public class CustomerDao {
 	@Autowired
 	public CustomerDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	// 전체 고객 조회
+	public List<Customer> allCustomer() {
+		String sql = "SELECT * FROM Customer";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Customer>(Customer.class));
 	}
 	
 	// 온라인 뱅킹을 위한 가입을 수행
@@ -38,5 +46,16 @@ public class CustomerDao {
 			return null;
 		}
 		
+	}
+	
+	// 회원가입 아이디 중복체크용 아이디로 회원찾기
+	public Customer checkId(String userId) {
+		try {
+			String sql = "SELECT * FROM Customer WHERE userId = ?";
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Customer>(Customer.class), userId);
+			
+		} catch (IncorrectResultSizeDataAccessException error) {
+			return null;
+		}
 	}
 }

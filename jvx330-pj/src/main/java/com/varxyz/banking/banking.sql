@@ -4,6 +4,7 @@ CREATE TABLE Account(
 	accountNum		CHAR(11)	NOT NULL, -- 000-00-0000
 	accType			CHAR		NOT NULL 	DEFAULT 'S',
 	balance			DOUBLE		NOT NULL	DEFAULT 0,
+	accountPasswd	CHAR(4)		NOT NULL	DEFAULT '0000', 
 	interestRate	DOUBLE		NOT NULL 	DEFAULT 0,
 	overAmount		DOUBLE 		NOT NULL 	DEFAULT 0,
 	regDate			TIMESTAMP	NOT NULL 	DEFAULT CURRENT_TIMESTAMP,
@@ -40,7 +41,7 @@ SELECT balance FROM Account WHERE accountNum = '985-50-4801';
 
 SELECT * FROM Customer WHERE userId = 'wer' AND passwd = 'wer';
 
-DELETE FROM Customer WHERE cid=1002;
+DELETE FROM Customer WHERE cid=1003;
 
 -- 계좌이체 비밀번호 확인
 SELECT * FROM Account a INNER JOIN Customer c
@@ -53,6 +54,7 @@ ON (a.customerId = c.cid);
 SELECT * FROM Account a INNER JOIN Customer c
 ON a.customerId = c.cid WHERE c.userId = 'sdf';
 
+SELECT cid FROM Customer WHERE userId = 'sdf';
 
 
 

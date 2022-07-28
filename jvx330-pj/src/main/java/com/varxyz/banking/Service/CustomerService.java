@@ -1,6 +1,8 @@
 package com.varxyz.banking.Service;
 
 
+import java.util.List;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +28,15 @@ public class CustomerService {
 	// 로그인시 유저 체크
 	public Customer checkUser(String userId, String passwd) {
 		return customerDao.checkUser(userId, passwd);
+	}
+	
+	// 아이디로 회원 찾기 (아이디 중복체크)
+	public Customer checkId(String userId) {
+		return customerDao.checkId(userId);
+	}
+	
+	public List<Customer> allCustomer() {
+		return customerDao.allCustomer();
 	}
 	
 }

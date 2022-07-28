@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Checkout example · Bootstrap v4.6</title>
+    <title>SongBank</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/checkout/">
 
@@ -57,7 +57,7 @@
       <div class="col-md-5 order-md-1">
 
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" onclick="location.href='login">로그인 하기</button>
+        <button class="btn btn-primary btn-lg btn-block" onclick="location.href='login'">로그인 하기</button>
       </div>
 
       <footer class="my-5 pt-5 text-muted text-center text-small">

@@ -10,7 +10,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 public class Customer {
 
 	private long cid;
@@ -32,4 +31,12 @@ public class Customer {
 	public Customer(String userId) {
 		this.userId = userId;
 	}
+
+	@Override
+	public String toString() {
+		return cid + "," + userId + "," + passwd + "," + name + "," + ssn
+				+ "," + phone + "," + regDate;
+	}
+	
+	
 }

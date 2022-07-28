@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Pricing example · Bootstrap v4.6</title>
+    <title>SongBank</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/pricing/">
 	<link href="<c:url value='/resources/css/default.css'/>" rel="stylesheet">
@@ -48,21 +50,13 @@
     <link href="<c:url value='/resources/css/success_login.css'/>" rel="stylesheet">
   </head>
   <body>
+	<!-- header -->
+	<%@ include file="../incl/header.jsp"%>
+	<!-- /header -->
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">SongBank</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a href="#">${userId}님 환영합니다.</a>
-    <a class="p-2 text-dark" href="#">내 통장</a>
-    <a class="p-2 text-dark" href="#">잔고</a>
-    <a class="p-2 text-dark" href="#">송금</a>
-    <a class="p-2 text-dark" href="#">계좌 개설</a>
-  </nav>
-  <a class="btn btn-outline-primary" href="#">Log out</a>
-</div>
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <!-- <h1 class="display-4">Pricing</h1> -->
-  <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p> -->
+ 	<h1 class="display-4 font-weight-bold">SongBank</h1>
+    <p class="lead">다양한 은행업무를 수행하세요</p>
 </div>
 <div class="container">
   <div class="card-deck mb-3 text-center">
@@ -106,14 +100,9 @@
     </div>
   </div>
 
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <img class="mb-2" src="../assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-        <small class="d-block mb-3 text-muted">&copy; LeeSongYi</small>
-      </div>
-    </div>
-  </footer>
+  <!-- footer -->
+	<%@ include file="../incl/footer.jsp"%>
+	<!-- /footer -->
 </div>
 
 

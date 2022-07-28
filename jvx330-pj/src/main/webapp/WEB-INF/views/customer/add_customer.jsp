@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Checkout example · Bootstrap v4.6</title>
+    <title>SongBank</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/checkout/">
 
@@ -55,15 +55,22 @@
   <div class="row justify-content-center">
 
     <div class="col-md-5 order-md-1">
-      <form action="add_customer" method="post" class="needs-validation" novalidate>
+      <form action="check_id" method="get" class="needs-validation" novalidate>
         <div class="mb-3">
-          <label for="email">아이디</label>
-          <input type="text" name="userId" class="form-control" id="username" placeholder="아이디 입력해주세요.">
-        </div>
-
+            <label for="userId">아이디</label>
+            <div class="input-group mb-3">
+              <input name="userId" type="text" class="form-control" placeholder="아이디를 입력해주세요." aria-describedby="button-addon2" value="${userId}">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">아이디 중복체크</button>
+            </div>
+            <span>${msg}</span>
+          </div>
+          </form>
+          
+		<form action="add_customer" method="post" class="needs-validation" novalidate>
         <div class="mb-3">
           <label for="username">비밀번호</label>
           <div class="input-group">
+          <input type="hidden" name="userId" value="${userId}">
             <input type="text" name="passwd" class="form-control" id="username" placeholder="비밀번호" required>
           </div>
         </div>
@@ -85,7 +92,7 @@
 
 
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">회원가입 하기</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="idcheck" value="pass">회원가입 하기</button>
   </form>
 </div>
 

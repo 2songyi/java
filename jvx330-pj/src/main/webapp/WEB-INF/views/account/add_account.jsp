@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>add_account</title>
+    <title>SongBank</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/pricing/">
 	<link href="<c:url value='/resources/css/default.css'/>" rel="stylesheet">
@@ -44,17 +44,9 @@
   </head>
   <body>
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">SongBank</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-  	<a href="#">${userId}님 환영합니다.</a>
-    <a class="p-2 text-dark" href="#">내 통장</a>
-    <a class="p-2 text-dark" href="#">잔고</a>
-    <a class="p-2 text-dark" href="#">송금</a>
-    <a class="p-2 text-dark" href="#">계좌 개설</a>
-  </nav>
-  <a class="btn btn-outline-primary" href="#">Log out</a>
-</div>
+<!-- header -->
+	<%@ include file="../incl/header.jsp"%>
+	<!-- /header -->
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   <h1 class="display-4">계좌 개설</h1>
@@ -69,7 +61,7 @@
 
         <div class="mb-3">
           <label for="username">고객번호</label>
-            <input type="text" name="cid" class="form-control" id="cid" placeholder="cid" required>
+            <input type="text" name="cid" class="form-control" id="cid" value="${cid}" required readonly>
             <div class="invalid-feedback" style="width: 100%;">
               고객번호는 필수정보입니다.
             </div>
@@ -90,6 +82,16 @@
               최초입금액은 필수입니다.
             </div>
         </div>
+        
+        <div class="mb-3">
+          <label for="accountPasswd">계좌 비밀번호</label>
+            <input type="text" name="accountPasswd" class="form-control" id="accountPasswd" placeholder="4자리 비밀번호" required
+            maxlength="4" minlength="4">
+            <div class="invalid-feedback" style="width: 100%;">
+              비밀번호은 필수입니다.
+            </div>
+        </div>
+        
         <hr class="mb-4">
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="same-address">
@@ -102,14 +104,9 @@
     </div>
   </div>
 
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <img class="mb-2" src="../assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-        <small class="d-block mb-3 text-muted">&copy; LeeSongYi</small>
-      </div>
-    </div>
-  </footer>
+    <!-- footer -->
+	<%@ include file="../incl/footer.jsp"%>
+	<!-- /footer -->
 </div>
 
 

@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Signin</title>
-
+    <title>SongBank</title>
+    
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sign-in/">
 	<link href="<c:url value='/resources/css/default.css'/>" rel="stylesheet">
 
@@ -54,7 +54,8 @@
 
 <form class="form-signin" action="login" method="post">
   <img class="mb-4" src="<c:url value='/resources/img/bank.png'/>" alt="" width="50" height="50">
-  <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
+  <h1 class="h3 mb-3 font-weight-normal font-weight-bold">SongBank</h1>
+  <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
   <label for="inputEmail" class="sr-only">아이디</label>
   <input type="text" name="userId" id="inputEmail" class="form-control" placeholder="아이디" required autofocus>
   <label for="inputPassword" class="sr-only">비밀번호</label>
