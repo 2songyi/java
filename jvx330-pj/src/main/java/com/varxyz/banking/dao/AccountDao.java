@@ -18,6 +18,7 @@ import com.varxyz.banking.domain.AccountListCommand;
 import com.varxyz.banking.domain.CheckingAccount;
 import com.varxyz.banking.domain.Customer;
 import com.varxyz.banking.domain.SavingAccount;
+import com.varxyz.banking.domain.TransferHistory;
 
 @Repository
 public class AccountDao {
@@ -102,6 +103,20 @@ public class AccountDao {
 			return null;
 		}
 		
+	}
+	
+	// 계좌이체 내역 등록
+	public void addtransferHistory(String outAccountNum, String inAccountNum, double money, double balance) {
+		String sql = "INSERT INTO TRANSFER(outAccountNum, inAccountNum, money, balance) "
+				+ "VALUES(?, ?, ?, ?)";
+		jdbcTemplate.update(sql, outAccountNum, inAccountNum, money, balance);
+		
+	}
+	
+	// 거래내역 조회
+	public List<TransferHistory> findAllTransferHistory() {
+		String sql = "SELECT * FROM TRANSFER";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TransferHistory>(TransferHistory.class));
 	}
 	
 

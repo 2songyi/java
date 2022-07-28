@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ import com.varxyz.banking.domain.Customer;
 
 @Controller("banking.loginController")
 public class LoginController {
+		
+	@Autowired
+	private AccountService service;
 	
 	// 로그인 페이지가 첫 페이지
 		@GetMapping("banking/login")
@@ -75,16 +79,16 @@ public class LoginController {
 			}
 		}
 		
-		// 확인버튼 클릭 시 메인페이지로 이동
-//		@GetMapping("banking/main")
-//		public String gotoMain(@RequestParam String userId, Model model) {
-//			model.addAttribute("userId", userId);
-//			return "log/success_login";
-//		}
+
 		@GetMapping("banking/main")
 		public String gotoMain(HttpSession session, Model model) {
 			String userId = (String)session.getAttribute("userId");
 			model.addAttribute("userId", userId);
+			
+			// 메인페이지 들어오면 계좌리스트 카드로 띄우기
+			List<AccountListCommand> accountList = service.getAccount(userId);
+			model.addAttribute("accountList", accountList);
+			System.out.println("main accountList : " + accountList);
 			return "log/success_login";
 		}
 		

@@ -17,6 +17,7 @@ import com.varxyz.banking.domain.AccountListCommand;
 import com.varxyz.banking.domain.CheckingAccount;
 import com.varxyz.banking.domain.Customer;
 import com.varxyz.banking.domain.SavingAccount;
+import com.varxyz.banking.domain.TransferHistory;
 
 @Controller("banking.accountController")
 public class AccountController {
@@ -191,6 +192,22 @@ public class AccountController {
 		model.addAttribute("userId", session.getAttribute("userId"));
 		return "account/transfer_success";
 	}
+	
+	// 거래내역 조회하기
+	@PostMapping("banking/find_transfer_history")
+	public String transcationDesc(@RequestParam String accountNum, Model model, HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		model.addAttribute("userId", userId);
+		
+		//accountNum으로 거래내역 조회해서 거래내역 리스트 받아오고 테이블출력
+		//@RequestParam String accountNum -> 받아와서 계좌별 리스트 뽑기기능 추가
+		// 현재는 전체 내역 조회만 구현했음
+		List<TransferHistory> transferList = service.findAllTransferHistory();
+		model.addAttribute("transferList", transferList);
+		return "account/find_transfer_history";
+	}
+	
+
 
 	// 계좌랜덤생성기
 	public String generateAccountNum() {
@@ -210,6 +227,9 @@ public class AccountController {
 
 		return accountNum;
 	}
+	
+	
+	
 	
 
 

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.varxyz.banking.dao.AccountDao;
 import com.varxyz.banking.domain.Account;
 import com.varxyz.banking.domain.AccountListCommand;
+import com.varxyz.banking.domain.TransferHistory;
 
 @Component
 public class AccountService {
@@ -54,6 +55,9 @@ public class AccountService {
 		
 		// outAccountNum계좌에서 money만큼 출금 withdraw
 		// inAccountNum 계좌에 money만큼 입금 deposit
+		
+		// 계좌이체 시 거래내역 추가하기
+		addtransferHistory(outAccountNum, inAccountNum, money, balance1);
 	}
 	
 	// 출금
@@ -71,6 +75,17 @@ public class AccountService {
 		// accountNum, passwd는 다른테이블에 있으니 조인이 필요할 듯
 		// -> 계좌등록할 때 accountPasswd를 추가하는걸로 수정해서 조인 불필요
 		return accountDao.checkPasswdForTransfer(accountNum, accountPasswd);
+	}
+	
+	// 계좌이체 내역 등록
+	public void addtransferHistory(String outAccountNum, String inAccountNum, double money, double balance) {
+		
+		accountDao.addtransferHistory(outAccountNum, inAccountNum, money, balance);
+	}
+	
+	// 계좌이제 거래내역 조회
+	public List<TransferHistory> findAllTransferHistory() {
+		return accountDao.findAllTransferHistory();
 	}
 	
 	// 이자 입금
