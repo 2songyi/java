@@ -13,6 +13,7 @@ public class AccountListCommand {
 	private double balance;
 	private double interestRate;
 	private double overAmount;
+	private String name;
 	
 	public AccountListCommand() {
 		
@@ -21,7 +22,7 @@ public class AccountListCommand {
 	@Override
 	public String toString() {
 		return accountNum + "," + accType + "," + balance
-				+ "," + interestRate + "," + overAmount;
+				+ "," + interestRate + "," + overAmount + "," + name;
 	}
 	
 	

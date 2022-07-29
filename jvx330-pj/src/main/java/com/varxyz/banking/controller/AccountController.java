@@ -32,8 +32,6 @@ public class AccountController {
 		String userId = (String)session.getAttribute("userId");
 		model.addAttribute(userId);
 		
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
 		
 		long cid = service.findCidbyUserId(userId);
 		model.addAttribute("cid", cid);
@@ -49,14 +47,11 @@ public class AccountController {
 		String userId = (String)session.getAttribute("userId");
 		model.addAttribute(userId);
 		
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
-
 		String accountNum;
 		
 		// service로 내용 옮기기(계좌 생성기)
 		if (accType.equals("S")) {
-			accType = "Saving Account";
+			accType = "예금 계좌";
 			accountNum = generateAccountNum(); // 계좌번호생성기로 랜덤계좌번호 생성
 
 			SavingAccount account = new SavingAccount();
@@ -69,7 +64,7 @@ public class AccountController {
 
 			service.addAccount(account);
 		} else {
-			accType = "Checking Account";
+			accType = "입출금 계좌";
 			accountNum = generateAccountNum();
 
 			CheckingAccount account = new CheckingAccount();
@@ -78,7 +73,7 @@ public class AccountController {
 			account.setAccType('C');
 			account.setBalance(balance);
 			account.setAccountPasswd(accountPasswd);
-			account.setOverdraftAmount(0.3);
+			account.setOverdraftAmount(100000);
 
 			service.addAccount(account);
 		}
@@ -100,9 +95,6 @@ public class AccountController {
 		model.addAttribute(userId);
 		
 		//유저 아이디로 account정보 받기
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
-		
 		List<AccountListCommand> accountList = service.getAccount(userId);
 		
 		System.out.println("accountList" + accountList);
@@ -125,8 +117,7 @@ public class AccountController {
 //		model.addAttribute("accountList", accountList);
 		// session으로 하면 안될듯
 		
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
+
 		List<AccountListCommand> accountList = service.getAccount(userId);
 		model.addAttribute("accountList", accountList);
 		
@@ -139,8 +130,6 @@ public class AccountController {
 		model.addAttribute(userId);
 		
 		System.out.println(accountNum);
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
 		
 		double balance = service.getBalance(accountNum);
 		
@@ -159,10 +148,12 @@ public class AccountController {
 		model.addAttribute("userId", userId);
 		
 		// session에 저장해둔 userId로 계좌번호 찾아서 select박스로 만들기
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
 		List<AccountListCommand> accountList = service.getAccount(userId);
 		model.addAttribute("accountList", accountList);
+		
+		// 전체 계좌목록 찾아서 list로 받는사람 select박스로 만들기
+		List<AccountListCommand> allAccountList = service.findAllAccount();
+		model.addAttribute("allAccountList", allAccountList);
 		
 		return "account/transfer";
 	}
@@ -171,8 +162,6 @@ public class AccountController {
 	public String transferDo(@RequestParam String outAccountNum, @RequestParam String inAccountNum, 
 			@RequestParam double money, @RequestParam String accountPasswd, Model model, HttpSession session) {
 		
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		AccountService service = context.getBean("accountService", AccountService.class);
 		
 		// outAccountNum, accountPasswd로 계좌 소유주 조회 -> 맞으면 진행
 		Account checkPasswd = service.checkPasswdForTransfer(outAccountNum, accountPasswd);
@@ -205,6 +194,16 @@ public class AccountController {
 		List<TransferHistory> transferList = service.findAllTransferHistory();
 		model.addAttribute("transferList", transferList);
 		return "account/find_transfer_history";
+	}
+	
+	// 관리자용 ) 전체 계좌정보 가져오기
+	@GetMapping("banking/all_account")
+	public String allAccount(HttpSession session, Model model) {
+		String userId = (String)session.getAttribute("userId");
+		model.addAttribute("userId", userId);
+		
+		
+		return null;
 	}
 	
 

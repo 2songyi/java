@@ -21,5 +21,9 @@ public class TransferHistory {
 		return outAccountNum + "," + inAccountNum + "," + money + "," + balance + "," + regDate;
 	}
 	
+	public TransferHistory() {
+		
+	}
+	
 	
 }

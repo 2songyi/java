@@ -44,6 +44,18 @@
     <!-- Custom styles for this template -->
     <link href="<c:url value='/resources/css/success_login.css'/>" rel="stylesheet">
     
+     <script language="javascript">
+
+	function agreeCheck(frm) {
+   		if (frm.checkButton.disabled==true) {
+    		frm.checkButton.disabled=false
+   		} else {
+  	 		 frm.checkButton.disabled=true   		
+  	 	}
+	}
+
+	</script>
+	
   </head>
   <body class="bg-light">
 
@@ -90,15 +102,20 @@
           <input type="text" name="phone" class="form-control" id="address2" placeholder="010-0000-0000">
         </div>
 
-
+		<hr class="mb-4">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="same-address" onClick="agreeCheck(this.form)">
+          <label class="custom-control-label" for="same-address">회원가입 약관에 동의합니다. (필수)</label>
+        </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="idcheck" value="pass">회원가입 하기</button>
+        <button name="checkButton" class="btn btn-primary btn-lg btn-block" type="submit" name="idcheck" value="pass" disabled>회원가입 하기</button>
   </form>
 </div>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <!-- <p class="mb-1">&copy; songbank</p> -->
   </footer>
+</div>
 </div>
 
 

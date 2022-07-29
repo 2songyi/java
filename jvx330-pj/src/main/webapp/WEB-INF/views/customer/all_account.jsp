@@ -56,7 +56,7 @@
 	<!-- /header -->
 
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  	<h1 class="display-4">내 계좌 조회</h1>
+  	<h1 class="display-4">고객 조회</h1>
 	</div>
 
 <div class="container">
@@ -67,22 +67,26 @@
   <thead>
     <tr>
       <th scope="col">No</th>
-      <th scope="col">계좌번호</th>
-      <th scope="col">계좌종류</th>
-      <th scope="col">잔액</th>
-      <th scope="col">이자율</th>
-      <th scope="col">한도</th>
+      <th scope="col">고객번호</th>
+      <th scope="col">아이디</th>
+      <th scope="col">비밀번호</th>
+      <th scope="col">이름</th>
+      <th scope="col">주민번호</th>
+      <th scope="col">핸드폰번호</th>
+      <th scope="col">가입일</th>
     </tr>
   </thead>
   <tbody>
-  	<c:forEach var="accountList" items="${accountList}" varStatus="status">
+  	<c:forEach var="customerList" items="${customerList}" varStatus="status">
     <tr>
        <th scope="row">${status.index + 1}</th>
-   	   <td>${fn:split(accountList, ',')[0]}</td>
-       <td>${fn:split(accountList, ',')[1]}</td>
-       <td>${fn:split(accountList, ',')[2]}</td>
-       <td>${fn:split(accountList, ',')[3]}</td>
-       <td>${fn:split(accountList, ',')[4]}</td>
+   	   <td>${fn:split(customerList, ',')[0]}</td>
+       <td>${fn:split(customerList, ',')[1]}</td>
+       <td>${fn:split(customerList, ',')[2]}</td>
+       <td>${fn:split(customerList, ',')[3]}</td>
+       <td>${fn:split(customerList, ',')[4]}</td>
+       <td>${fn:split(customerList, ',')[5]}</td>
+       <td>${fn:split(customerList, ',')[6]}</td>
    	</tr>
 	</c:forEach>
   </tbody>

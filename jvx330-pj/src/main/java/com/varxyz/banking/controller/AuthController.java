@@ -19,15 +19,18 @@ import com.varxyz.banking.domain.AccountListCommand;
 import com.varxyz.banking.domain.Customer;
 
 @Controller("banking.loginController")
-public class LoginController {
+public class AuthController {
 		
 	@Autowired
-	private AccountService service;
+	private AccountService aservice;
 	
-	// 로그인 페이지가 첫 페이지
+	@Autowired
+	private CustomerService cservice;
+	
+	   
 		@GetMapping("banking/login")
 		public String startLogin() {
-			return "log/login";
+			return "auth/login";
 		}
 		
 		// 로그인 페이지
@@ -35,16 +38,10 @@ public class LoginController {
 		public String login(@RequestParam String userId, @RequestParam String passwd, Model model, HttpSession session) {
 			// 아이디, 비밀번호로 회원 확인하기
 			
-			AnnotationConfigApplicationContext context =
-					new AnnotationConfigApplicationContext(DataSourceConfig.class);
-			
-			CustomerService service = context.getBean("customerService", CustomerService.class);
-			
-			Customer checkResult = service.checkUser(userId, passwd);
+			Customer checkResult = cservice.checkUser(userId, passwd);
 			System.out.println("checkResult : " + checkResult);
 			
 			//accountList 세션에 올리기
-			AccountService aservice = context.getBean("accountService", AccountService.class);
 			List<AccountListCommand> accountList = aservice.getAccount(userId);
 			session.setAttribute("accountList", accountList);
 			
@@ -85,11 +82,16 @@ public class LoginController {
 			String userId = (String)session.getAttribute("userId");
 			model.addAttribute("userId", userId);
 			
+			// 세션정보가 없으면 login페이지로 이동
+			if (session.getAttribute("userId") == null) {
+				return "redirect:/banking/login";
+			}
+			
 			// 메인페이지 들어오면 계좌리스트 카드로 띄우기
-			List<AccountListCommand> accountList = service.getAccount(userId);
+			List<AccountListCommand> accountList = aservice.getAccount(userId);
 			model.addAttribute("accountList", accountList);
 			System.out.println("main accountList : " + accountList);
-			return "log/success_login";
+			return "auth/main";
 		}
 		
 		// 로그아웃
@@ -97,6 +99,6 @@ public class LoginController {
 		public String logout(HttpSession session) {
 			// 로그아웃시 세션 제거
 			session.invalidate();
-			return "log/login";
+			return "auth/login";
 		}
 }

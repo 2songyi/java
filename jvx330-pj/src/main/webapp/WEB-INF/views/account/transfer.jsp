@@ -47,7 +47,17 @@
   </style>
 
   <!-- Custom styles for this template -->
-  
+  <script>
+  function handleOnChange(e) {
+	  // 선택된 데이터 가져오기
+	 /*  const value = e.value; */
+	  const value = e.value2;
+	  
+	  // 데이터 출력
+	  document.getElementById('name').value
+	    = value;
+	}
+  </script>
 </head>
 
 <body>
@@ -81,12 +91,26 @@
 
           <div class="mb-3">
             <label for="inAccountNum">받으시는 분</label>
-            <input type="text" name="inAccountNum" class="form-control" id="inAccountNum" placeholder="계좌번호" required>
+            <!-- <input type="text" name="inAccountNum" class="form-control" id="inAccountNum" placeholder="계좌번호" required> -->
+            <select name="inAccountNum" class="custom-select d-block w-100" id="inAccountNum" onchange="handleOnChange(this)" required>
+              <c:forEach var="allAccountList" items="${allAccountList}" varStatus="status">
+              	<option value="${fn:split(allAccountList, ',')[0]}" value2="${fn:split(accountList, ',')[5]}">${fn:split(allAccountList, ',')[0]}</option>
+              </c:forEach>
+            </select>
+            
             <div class="invalid-feedback" style="width: 100%;">
              	받는 분 정보는 필수정보입니다.
             </div>
           </div>
-
+		  
+		 <!-- <div class="mb-3">
+            <label for="money">받는 분 성함</label>
+            <input type="text" name="name" class="form-control" id="name" readonly>
+            <div class="invalid-feedback" style="width: 100%;">
+              최초입금액은 필수입니다.
+            </div>
+          </div>  -->
+          
           <div class="mb-3">
             <label for="money">송금액</label>
             <input type="number" name="money" class="form-control" id="money" placeholder="송금액(원)" required>

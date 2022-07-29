@@ -30,9 +30,6 @@ public class CustomerController {
 		// 받은정보 customer테이블에 insert한 후 가입 정보 띄우기
 
 		System.out.println(customer);
-//		AnnotationConfigApplicationContext context =
-//				new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		CustomerService service = context.getBean("customerService", CustomerService.class);
 		
 		service.addCustomer(customer);
 		
@@ -45,9 +42,7 @@ public class CustomerController {
 	public String checkId(@RequestParam String userId, Model model) {
 		// 회원가입창에 아이디 입력버튼 -> input+button형태로 수정
 		// 아이디 중복확인
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		CustomerService service = context.getBean("customerService", CustomerService.class);
-		
+
 		Customer checkResult = service.checkId(userId);
 		
 		// checkResult가 null이 아니면 중복된 아이디, null이면 회원가입 진행
@@ -61,12 +56,10 @@ public class CustomerController {
 		return "customer/add_customer";
 	}
 	
-	// 전체 고객 리스트(계좌번호까지) -> 조인필요한가
+	// 관리자용 ) 전체 고객 리스트(계좌번호까지) -> 조인필요한가
 	@GetMapping("/banking/all_customer")
 	public String allCustomer(Model model) {
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
-//		CustomerService service = context.getBean("customerService", CustomerService.class);
-		
+
 		List<Customer> customerList = service.allCustomer();
 		model.addAttribute("customerList", customerList);
 		

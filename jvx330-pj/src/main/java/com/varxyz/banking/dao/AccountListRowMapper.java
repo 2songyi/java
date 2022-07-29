@@ -18,6 +18,7 @@ public class AccountListRowMapper implements RowMapper<AccountListCommand> {
 		account.setBalance(rs.getDouble("balance"));
 		account.setInterestRate(rs.getDouble("interestRate"));
 		account.setOverAmount(rs.getDouble("overAmount"));
+		account.setName(rs.getString("name"));
 		
 		return account;
 	}

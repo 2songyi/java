@@ -67,5 +67,6 @@ ON a.customerId = c.cid WHERE c.userId = 'sdf';
 
 SELECT cid FROM Customer WHERE userId = 'sdf';
 
+SELECT * FROM Account a INNER JOIN Customer c ON a.customerId = c.cid;
 
 

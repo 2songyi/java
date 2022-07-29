@@ -68,7 +68,7 @@
   <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
   <p></p>
   <a href="add_customer">회원가입</a>
-  <p class="mt-5 mb-3 text-muted">&copy; songbank</p>
+  <p class="mt-5 mb-3 text-muted">&copy; LeeSongYi</p>
 </form>
 
 

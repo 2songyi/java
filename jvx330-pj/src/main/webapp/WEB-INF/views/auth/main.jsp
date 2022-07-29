@@ -59,16 +59,16 @@
     <p class="lead">다양한 은행업무를 수행하세요</p>
 </div>
 <div class="container">
-	  <form class="" action="transcation_desc" method="post">
+	  <form class="" action="find_transfer_history" method="post">
     <div class="row justify-content-center text-center">
       <c:forEach var="accountList" items="${accountList}" varStatus="status">
       <div class="col-sm-5">
-        <div class="card">
+        <div class="card" style="margin-bottom: 20px;">
           <div class="card-body">
-            <p class="card-text text-left">${fn:split(accountList, ',')[0]}</p>
+            <p class="card-text text-left" style="margin-bottom: 5px;">${fn:split(accountList, ',')[0]}</p>
             <input type="hidden" name="accountNum" value="${fn:split(accountList, ',')[0]}">
             <p class="card-text">잔액</p>
-            <h5 class="card-title text-center">${fn:split(accountList, ',')[2]}원</h5>
+            <h5 class="card-title text-center font-weight-bold">${fn:split(accountList, ',')[2]}원</h5>
             <div class="btn-group btn-group-lg " role="group" aria-label="Large button group">
               <button type="submit" class="btn btn-outline-primary" onclick="location.href='find_transfer_history'">거래내역</button>
               <button type="button" class="btn btn-outline-primary" onclick="location.href='transfer'">송금하기</button>

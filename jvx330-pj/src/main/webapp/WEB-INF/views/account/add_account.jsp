@@ -40,7 +40,17 @@
     </style>
 
     <!-- Custom styles for this template -->
-    
+    <script language="javascript">
+
+	function agreeCheck(frm) {
+   		if (frm.checkButton.disabled==true) {
+    		frm.checkButton.disabled=false
+   		} else {
+  	 		 frm.checkButton.disabled=true   		
+  	 	}
+	}
+
+	</script>
   </head>
   <body>
 
@@ -94,12 +104,12 @@
         
         <hr class="mb-4">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="same-address">
-          <label class="custom-control-label" for="same-address">계좌 개설 약관에 동의합니다.</label>
+          <input type="checkbox" class="custom-control-input" id="same-address" onClick="agreeCheck(this.form)">
+          <label class="custom-control-label" for="same-address">계좌 개설 약관에 동의합니다. (필수)</label>
         </div>
         <hr class="mb-4">
 
-        <button class="btn btn-primary btn-lg btn-block" type="submit">계좌 개설</button>
+        <button name="checkButton" class="btn btn-primary btn-lg btn-block" type="submit" disabled>계좌 개설</button>
       </form>
     </div>
   </div>
