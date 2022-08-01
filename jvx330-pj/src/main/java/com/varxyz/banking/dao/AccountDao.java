@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import com.varxyz.banking.domain.Account;
 import com.varxyz.banking.domain.AccountListCommand;
 import com.varxyz.banking.domain.CheckingAccount;
-import com.varxyz.banking.domain.Customer;
 import com.varxyz.banking.domain.SavingAccount;
 import com.varxyz.banking.domain.TransferHistory;
 
